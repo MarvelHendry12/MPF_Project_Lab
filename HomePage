@@ -1,0 +1,127 @@
+package main;
+
+import javafx.application.Application;
+
+import javafx.geometry.Pos;
+import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.scene.control.Menu;
+import javafx.scene.control.MenuBar;
+import javafx.scene.control.MenuItem;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
+
+public class Main extends Application {
+	
+	Scene sc;
+	BorderPane bp;
+	Image windowImg, notepadImg, trashImg, notepadImg1, chromeImg;
+	ImageView ivWindow, ivNotepad, ivTrash, ivNotepad1, ivChrome;
+	Label lbl, lbl1, lbl2;
+	MenuBar taskbar;
+	Menu windowIcon, notepadIcon, trashIcon, notepadIcon1, chromeIcon;
+	MenuItem logout, shutdown;
+	VBox vb, trash, notepad, chrome;
+	
+	public void init() {
+		bp = new BorderPane();
+		sc = new Scene(bp, 1300, 900);
+		vb = new VBox();
+		sc.getStylesheets().add("style/style.css");
+		
+		windowImg = new Image(getClass().getResourceAsStream("/assets/window-icon.png"));
+		notepadImg = new Image(getClass().getResourceAsStream("/assets/notepad-icon.png"));
+		trashImg = new Image(getClass().getResourceAsStream("/assets/trash-icon.png"));
+		notepadImg1 = new Image(getClass().getResourceAsStream("/assets/notepad-icon.png"));
+		chromeImg = new Image(getClass().getResourceAsStream("/assets/chrome.png"));
+		
+		ivWindow = new ImageView();
+		ivNotepad = new ImageView();
+		ivTrash = new ImageView();
+		ivNotepad1 = new ImageView();
+		ivChrome = new ImageView();
+		
+		lbl = new Label("Trash");
+		lbl1 = new Label("Notepad");
+		lbl2 = new Label("ChRUme");
+		
+		taskbar = new MenuBar();
+		
+		windowIcon = new Menu();
+		notepadIcon = new Menu();
+		trashIcon = new Menu();
+		notepadIcon1 = new Menu();
+		chromeIcon = new Menu();
+		
+		trash = new VBox();
+		notepad = new VBox();
+		chrome = new VBox();
+		
+		trash.setAlignment(Pos.CENTER);
+		notepad.setAlignment(Pos.CENTER);
+		chrome.setAlignment(Pos.CENTER);
+		
+		trash.setSpacing(5);
+		notepad.setSpacing(5);
+		chrome.setSpacing(5);
+		
+		vb.setSpacing(10);
+		
+		trash.getChildren().addAll(ivTrash, lbl);
+		notepad.getChildren().addAll(ivNotepad1, lbl1);
+		chrome.getChildren().addAll(ivChrome, lbl2);
+		
+		taskbar.setMaxHeight(20);
+		
+		ivWindow.setImage(windowImg);
+		ivNotepad.setImage(notepadImg);
+		ivTrash.setImage(trashImg);
+		ivNotepad1.setImage(notepadImg1);
+		ivChrome.setImage(chromeImg);
+		
+		bp.setBottom(taskbar);
+		bp.setLeft(vb);
+		
+		taskbar.getMenus().addAll(windowIcon, notepadIcon);
+		vb.getChildren().addAll(trash, notepad, chrome);
+		
+		ivWindow.setFitWidth(40);
+	    ivWindow.setFitHeight(40);
+	    ivNotepad.setFitWidth(40);
+	    ivNotepad.setFitHeight(40);
+	    
+	    ivTrash.setFitWidth(64); 
+	    ivTrash.setFitHeight(64);
+	    
+		ivNotepad1.setFitWidth(64); 
+		ivNotepad1.setFitHeight(64);
+		
+		ivChrome.setFitWidth(64); 
+		ivChrome.setFitHeight(64);
+		
+		ivNotepad1.setFitWidth(64); 
+		ivNotepad1.setFitHeight(64);
+
+	    
+		windowIcon.setGraphic(ivWindow);
+	    notepadIcon.setGraphic(ivNotepad);
+	    trashIcon.setGraphic(ivTrash);
+	    notepadIcon1.setGraphic(ivNotepad1);
+	    chromeIcon.setGraphic(ivChrome);
+	}
+	
+	public static void main(String[] args) {
+		launch(args);
+	}
+
+	@Override
+	public void start(Stage ps) throws Exception {
+		init();
+		ps.setScene(sc);
+		ps.show();
+	}
+
+}
