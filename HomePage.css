@@ -1,9 +1,16 @@
 .root {
 	-fx-alignment: center;
-	-fx-background-image: url(../assets/homepage.jpg);
 	-fx-background-size: cover;
 }
 
 .menu-bar {
 	-fx-background-color: black;
+}
+
+.context-menu{
+	-fx-background-color: black;
+}
+
+.menu-item{
+	-fx-text-color: white;
 }
