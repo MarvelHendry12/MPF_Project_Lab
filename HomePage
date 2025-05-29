@@ -1,7 +1,6 @@
 package main;
 
-import javafx.application.Application;
-
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
@@ -11,43 +10,70 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-public class Main extends Application {
+public class Homepage {
 	
 	Scene sc;
 	BorderPane bp;
-	Image windowImg, notepadImg, trashImg, notepadImg1, chromeImg;
-	ImageView ivWindow, ivNotepad, ivTrash, ivNotepad1, ivChrome;
+	StackPane sp;
+	HBox shortcutContainer;
+	VBox currentColumn;
+	Image windowImg, notepadImg, trashImg, notepadImg1, chromeImg, bgImg, logoutImg, shutdownImg;
+	ImageView ivWindow, ivNotepad, ivTrash, ivNotepad1, ivChrome, ivBG, ivLogout, ivShutdown;
 	Label lbl, lbl1, lbl2;
 	MenuBar taskbar;
 	Menu windowIcon, notepadIcon, trashIcon, notepadIcon1, chromeIcon;
 	MenuItem logout, shutdown;
 	VBox vb, trash, notepad, chrome;
 	
+	final int MAX_SHORTCUT_PER_COLUMN = 5;
+	
 	public void init() {
+		sp = new StackPane();
 		bp = new BorderPane();
-		sc = new Scene(bp, 1300, 900);
 		vb = new VBox();
-		sc.getStylesheets().add("style/style.css");
 		
+		shortcutContainer = new HBox(20);
+		currentColumn = new VBox(10);
+		currentColumn.setAlignment(Pos.TOP_CENTER);
+		shortcutContainer.getChildren().add(currentColumn);
+		shortcutContainer.setPadding(new Insets(20));
+
+		sc = new Scene(sp, 1300, 900);
+
+		sc.getStylesheets().add("style.css");
+		
+
 		windowImg = new Image(getClass().getResourceAsStream("/assets/window-icon.png"));
 		notepadImg = new Image(getClass().getResourceAsStream("/assets/notepad-icon.png"));
 		trashImg = new Image(getClass().getResourceAsStream("/assets/trash-icon.png"));
 		notepadImg1 = new Image(getClass().getResourceAsStream("/assets/notepad-icon.png"));
 		chromeImg = new Image(getClass().getResourceAsStream("/assets/chrome.png"));
-		
-		ivWindow = new ImageView();
-		ivNotepad = new ImageView();
-		ivTrash = new ImageView();
-		ivNotepad1 = new ImageView();
-		ivChrome = new ImageView();
-		
+		bgImg = new Image(getClass().getResourceAsStream("/assets/homepage.jpg"));
+		logoutImg = new Image(getClass().getResourceAsStream("/assets/logout3-icon.png"));
+		shutdownImg = new Image(getClass().getResourceAsStream("/assets/shutdown4-icon.png"));
+
+		ivWindow = new ImageView(windowImg);
+		ivNotepad = new ImageView(notepadImg);
+		ivTrash = new ImageView(trashImg);
+		ivNotepad1 = new ImageView(notepadImg1);
+		ivChrome = new ImageView(chromeImg);
+		ivBG = new ImageView(bgImg);
+		ivLogout = new ImageView(logoutImg);
+		ivShutdown = new ImageView(shutdownImg);
+
+		ivBG.setFitWidth(1300);
+		ivBG.setFitHeight(900);
+		ivBG.setPreserveRatio(false);
+
 		lbl = new Label("Trash");
 		lbl1 = new Label("Notepad");
 		lbl2 = new Label("ChRUme");
-		
+
 		taskbar = new MenuBar();
 		
 		windowIcon = new Menu();
@@ -56,70 +82,74 @@ public class Main extends Application {
 		notepadIcon1 = new Menu();
 		chromeIcon = new Menu();
 		
-		trash = new VBox();
-		notepad = new VBox();
-		chrome = new VBox();
-		
-		trash.setAlignment(Pos.CENTER);
-		notepad.setAlignment(Pos.CENTER);
-		chrome.setAlignment(Pos.CENTER);
-		
-		trash.setSpacing(5);
-		notepad.setSpacing(5);
-		chrome.setSpacing(5);
-		
-		vb.setSpacing(10);
-		
-		trash.getChildren().addAll(ivTrash, lbl);
-		notepad.getChildren().addAll(ivNotepad1, lbl1);
-		chrome.getChildren().addAll(ivChrome, lbl2);
-		
-		taskbar.setMaxHeight(20);
-		
-		ivWindow.setImage(windowImg);
-		ivNotepad.setImage(notepadImg);
-		ivTrash.setImage(trashImg);
-		ivNotepad1.setImage(notepadImg1);
-		ivChrome.setImage(chromeImg);
-		
-		bp.setBottom(taskbar);
-		bp.setLeft(vb);
-		
-		taskbar.getMenus().addAll(windowIcon, notepadIcon);
-		vb.getChildren().addAll(trash, notepad, chrome);
-		
-		ivWindow.setFitWidth(40);
-	    ivWindow.setFitHeight(40);
-	    ivNotepad.setFitWidth(40);
-	    ivNotepad.setFitHeight(40);
-	    
-	    ivTrash.setFitWidth(64); 
-	    ivTrash.setFitHeight(64);
-	    
-		ivNotepad1.setFitWidth(64); 
-		ivNotepad1.setFitHeight(64);
-		
-		ivChrome.setFitWidth(64); 
-		ivChrome.setFitHeight(64);
-		
-		ivNotepad1.setFitWidth(64); 
-		ivNotepad1.setFitHeight(64);
+		logout = new MenuItem("Log Out");
+		shutdown = new MenuItem("Shut Down");
 
-	    
+		trash = new VBox(ivTrash, lbl);
+		trash.setAlignment(Pos.CENTER);
+
+		notepad = new VBox(ivNotepad1, lbl1);
+		notepad.setAlignment(Pos.CENTER);
+
+		chrome = new VBox(ivChrome, lbl2);
+		chrome.setAlignment(Pos.CENTER);
+
+		ivWindow.setFitWidth(40); ivWindow.setFitHeight(40);
+		ivNotepad.setFitWidth(40); ivNotepad.setFitHeight(40);
+		ivTrash.setFitWidth(64); ivTrash.setFitHeight(64);
+		ivNotepad1.setFitWidth(64); ivNotepad1.setFitHeight(64);
+		ivChrome.setFitWidth(64); ivChrome.setFitHeight(64);
+		ivLogout.setFitWidth(20); ivLogout.setFitHeight(20);
+		ivShutdown.setFitWidth(20);ivShutdown.setFitHeight(20);
+
 		windowIcon.setGraphic(ivWindow);
-	    notepadIcon.setGraphic(ivNotepad);
-	    trashIcon.setGraphic(ivTrash);
-	    notepadIcon1.setGraphic(ivNotepad1);
-	    chromeIcon.setGraphic(ivChrome);
+		notepadIcon.setGraphic(ivNotepad);
+		logout.setGraphic(ivLogout);
+		shutdown.setGraphic(ivShutdown);
+
+		taskbar.setMaxHeight(20);
+		taskbar.getMenus().addAll(windowIcon, notepadIcon);
+		
+		windowIcon.getItems().addAll(logout, shutdown);
+		
+		addShortcut(trash);
+		addShortcut(notepad);
+		addShortcut(chrome);
+
+		bp.setLeft(shortcutContainer);
+		bp.setBottom(taskbar);
+
+		sp.getChildren().addAll(ivBG, bp);
 	}
 	
-	public static void main(String[] args) {
-		launch(args);
+	public void addShortcut(VBox shortcut) {
+	    if (currentColumn.getChildren().size() >= MAX_SHORTCUT_PER_COLUMN) {
+	        currentColumn = new VBox(10);
+	        currentColumn.setAlignment(Pos.TOP_CENTER);
+	        shortcutContainer.getChildren().add(currentColumn);
+	    }
+	    currentColumn.getChildren().add(shortcut);
 	}
+	
+	public void setStyle() {
+		logout.getStyleClass().add("menu-item");
+		shutdown.getStyleClass().add("menu-item");
+	}
+	
+	public void setAction() {
+	    logout.setOnAction(e -> AppNavigator.goToLogin());
+	    shutdown.setOnAction(e -> System.exit(0));
 
-	@Override
-	public void start(Stage ps) throws Exception {
+//	    notepad.setOnMouseClicked(e -> openNotepad());
+//	    chrome.setOnMouseClicked(e -> openChrome());
+//	    trash.setOnMouseClicked(e -> openTrash());
+	}
+	
+
+	public void start(Stage ps){
 		init();
+		setStyle();
+		setAction();
 		ps.setScene(sc);
 		ps.show();
 	}
