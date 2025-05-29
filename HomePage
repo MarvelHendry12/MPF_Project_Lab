@@ -24,7 +24,7 @@ public class Homepage {
 	VBox currentColumn;
 	Image windowImg, notepadImg, trashImg, notepadImg1, chromeImg, bgImg, logoutImg, shutdownImg;
 	ImageView ivWindow, ivNotepad, ivTrash, ivNotepad1, ivChrome, ivBG, ivLogout, ivShutdown;
-	Label lbl, lbl1, lbl2;
+	Label Trashlbl, Notepadlbl, Chromelbl;
 	MenuBar taskbar;
 	Menu windowIcon, notepadIcon, trashIcon, notepadIcon1, chromeIcon;
 	MenuItem logout, shutdown;
@@ -70,9 +70,9 @@ public class Homepage {
 		ivBG.setFitHeight(900);
 		ivBG.setPreserveRatio(false);
 
-		lbl = new Label("Trash");
-		lbl1 = new Label("Notepad");
-		lbl2 = new Label("ChRUme");
+		Trashlbl = new Label("Trash");
+		Notepadlbl = new Label("Notepad");
+		Chromelbl = new Label("ChRUme");
 
 		taskbar = new MenuBar();
 		
@@ -85,13 +85,13 @@ public class Homepage {
 		logout = new MenuItem("Log Out");
 		shutdown = new MenuItem("Shut Down");
 
-		trash = new VBox(ivTrash, lbl);
+		trash = new VBox(ivTrash, Trashlbl);
 		trash.setAlignment(Pos.CENTER);
 
-		notepad = new VBox(ivNotepad1, lbl1);
+		notepad = new VBox(ivNotepad1, Notepadlbl);
 		notepad.setAlignment(Pos.CENTER);
 
-		chrome = new VBox(ivChrome, lbl2);
+		chrome = new VBox(ivChrome, Chromelbl);
 		chrome.setAlignment(Pos.CENTER);
 
 		ivWindow.setFitWidth(40); ivWindow.setFitHeight(40);
