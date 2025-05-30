@@ -141,8 +141,14 @@ public class Homepage {
 	    shutdown.setOnAction(e -> System.exit(0));
 
 //	    notepad.setOnMouseClicked(e -> openNotepad());
-//	    chrome.setOnMouseClicked(e -> openChrome());
+	    chrome.setOnMouseClicked(e -> openChrume());
 //	    trash.setOnMouseClicked(e -> openTrash());
+	}
+	
+	private void openChrume() {
+	    Stage chromeStage = new Stage();     
+	    ChrumeApp app = new ChrumeApp();      
+	    app.start(chromeStage);                
 	}
 	
 
