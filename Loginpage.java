@@ -83,7 +83,7 @@ public class Loginpage {
             System.out.println("Error: Background image not found!");
             background = new ImageView();
         }
-
+        
         root = new StackPane();
         bp = new BorderPane();
         gp = new GridPane();
@@ -112,7 +112,6 @@ public class Loginpage {
         setLayout();
         setAction();
         ps.setScene(sc);
-        ps.setTitle("Login Page");
         ps.show();
     }
 }
