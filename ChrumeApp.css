@@ -1,0 +1,65 @@
+.scroll-pane-transparent {
+    -fx-background-color: transparent;
+    -fx-padding: 0;
+}
+
+.scroll-pane-transparent > .viewport {
+    -fx-background-color: transparent;
+}
+
+.error-title {
+    -fx-font-size: 52px;
+    -fx-font-weight: bold;
+}
+
+.error-subtitle {
+    -fx-font-size: 25px;
+}
+
+.rutube-container {
+    -fx-background-color: #2b2b2b;
+}
+
+.rutube-label {
+    -fx-font-size: 35px;
+    -fx-text-fill: white;
+	-fx-font-weight: Bold;
+}
+
+.video-controls {
+    -fx-font-size: 12px;
+    -fx-padding: 4px 12px;
+}
+
+.rutify-label {
+	-fx-text-fill: white; 
+	-fx-font-size: 30px; 
+}
+
+.rutify-bar {
+	-fx-background-color: transparent;
+}
+
+.custom-slider {
+    -fx-padding: 0;
+}
+
+.custom-slider .track {
+    -fx-background-color: #ccc;
+    -fx-pref-height: 4px;
+}
+
+.custom-slider .thumb {
+    -fx-background-color: white;
+    -fx-pref-width: 10px;
+    -fx-pref-height: 10px;
+}
+
+.music-layout {
+	-fx-background-color: #000000;
+}
+
+.rutify-background {
+    -fx-background-color: #000000;
+}
+
